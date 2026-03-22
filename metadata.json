@@ -1,0 +1,7 @@
+{
+  "name": "Grocery Tracker & Budget Planner",
+  "description": "A mobile-first web app to track groceries, scan barcodes, and manage your budget.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

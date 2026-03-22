@@ -1,0 +1,91 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with budget settings",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "User ID"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "photoURL": {
+          "type": "string"
+        },
+        "monthlyBudget": {
+          "type": "number",
+          "description": "Monthly budget for groceries"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["uid", "createdAt"]
+    },
+    "GroceryItem": {
+      "title": "GroceryItem",
+      "description": "A grocery item purchased or to be purchased",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string",
+          "description": "Owner of the item"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the product"
+        },
+        "quantity": {
+          "type": "number",
+          "description": "Quantity purchased"
+        },
+        "price": {
+          "type": "number",
+          "description": "Price per unit"
+        },
+        "category": {
+          "type": "string",
+          "description": "Category of the product"
+        },
+        "barcode": {
+          "type": "string",
+          "description": "Scanned barcode (optional)"
+        },
+        "dateAdded": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["userId", "name", "quantity", "price", "category", "dateAdded", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": {
+        "$ref": "#/entities/User"
+      },
+      "description": "User profiles and settings"
+    },
+    "/users/{userId}/groceries/{itemId}": {
+      "schema": {
+        "$ref": "#/entities/GroceryItem"
+      },
+      "description": "Grocery items belonging to a user"
+    }
+  }
+}
